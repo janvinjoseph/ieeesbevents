@@ -1,25 +1,45 @@
-import logo from './logo.svg';
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 import './App.css';
+import EventsList from "./eventList";
+import { eventDetails, responsive } from "./eventData";
+
 
 function App() {
+  
+
+  const event = eventDetails.map(item => (
+    <EventsList name={item.name} url={item.imgurl} discription={item.discription}  />
+  ))
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="outerBox">
+      <div className="headerBox">
+        <div className="firstText">
+          <h3>FUN & ACTIVITIES</h3>
+        </div>
+        <div className="secondText">
+          <h1>OUR EVENTS</h1>
+        </div>
+        <div className="thirdText">
+          <h3>SOME OF THE EVENTS CONDUCTED BY IEEE SB VJEC THROUGHOUT THE YEAR</h3>
+        </div>
+        <div className="carouselBox">
+          <Carousel responsive={responsive}
+            autoPlay={true}
+            autoPlaySpeed={2500}
+            infinite={true}
+            transitionDuration={500}
+            showDots={true}
+            swipeable={true}
+            draggable={true}>
+            {event}
+          </Carousel>
+        </div>
+      </div>
     </div>
+
   );
 }
 
-export default App;
+export default App
+
